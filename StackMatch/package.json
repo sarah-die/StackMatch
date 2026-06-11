@@ -7,11 +7,21 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tsCheck": "tsc --build --pretty --watch"
   },
   "dependencies": {
+    "@progress/kendo-licensing": "^1.11.2",
+    "@progress/kendo-react-buttons": "^15.0.0",
+    "@progress/kendo-react-common": "^15.0.0",
+    "@progress/kendo-react-indicators": "^15.0.0",
+    "@progress/kendo-react-inputs": "^15.0.0",
+    "@progress/kendo-react-intl": "^15.0.0",
+    "@progress/kendo-react-layout": "^15.0.0",
+    "@progress/kendo-theme-default": "^14.1.0",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "react-router-dom": "^7.17.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
