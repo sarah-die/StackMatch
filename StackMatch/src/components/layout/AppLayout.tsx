@@ -6,7 +6,16 @@ export const AppLayout = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", minHeight: "100dvh" }}>
       <TopBar />
-      <main style={{ flex: 1, overflowY: "auto", paddingBottom: "60px" }}>
+      <main
+        style={{
+          flex: 1,
+          minHeight: 0,
+          overflowY: "auto",
+          paddingBottom: "60px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Outlet />
       </main>
       <BottomNav />
