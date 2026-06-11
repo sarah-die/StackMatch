@@ -24,7 +24,7 @@ export default function OnboardingPage() {
       style={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "100dvh",
+        flex: 1,
         padding: "24px 16px",
       }}
     >
