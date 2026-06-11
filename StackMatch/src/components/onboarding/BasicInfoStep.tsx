@@ -3,11 +3,18 @@ import { useOnboardingStore } from "../../store/useOnboardingStore";
 import type { ExperienceLevel } from "../../types";
 
 const EXPERIENCE_OPTIONS = [
-  { label: "Beginner", value: "beginner" },
-  { label: "Intermediate", value: "intermediate" },
-  { label: "Senior", value: "senior" },
-  { label: "Expert", value: "expert" },
+  { label: "Beginner", value: "Beginner" },
+  { label: "Intermediate", value: "Intermediate" },
+  { label: "Senior", value: "Senior" },
+  { label: "Expert", value: "Expert" },
 ];
+
+const LABEL_STYLE = { marginBottom: "8px" };
+const SUBTITLE_STYLE = {
+  color: "var(--color-muted, #6b7280)",
+  fontSize: "14px",
+  marginBottom: "15px",
+};
 
 export default function BasicInfoStep() {
   const name = useOnboardingStore((state) => state.name);
@@ -18,9 +25,9 @@ export default function BasicInfoStep() {
   const setExperienceLevel = useOnboardingStore((state) => state.setExperienceLevel);
 
   return (
-    <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "24px" }}>
+    <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "30px" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-        <label style={{ fontWeight: 500, fontSize: "14px" }}>Name</label>
+        <h2 style={LABEL_STYLE}>Name</h2>
         <Input
           value={name}
           onChange={(e) => setName(String(e.value ?? ""))}
@@ -29,8 +36,9 @@ export default function BasicInfoStep() {
         />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-        <label style={{ fontWeight: 500, fontSize: "14px" }}>Role</label>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <h2 style={LABEL_STYLE}>Role</h2>
+        <p style={SUBTITLE_STYLE}>Enter the role that best describes what you do.</p>
         <Input
           value={role}
           onChange={(e) => setRole(String(e.value ?? ""))}
@@ -39,9 +47,11 @@ export default function BasicInfoStep() {
         />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <label style={{ fontWeight: 500, fontSize: "14px" }}>Experience Level</label>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <h2 style={LABEL_STYLE}>Experience Level</h2>
+        <p style={SUBTITLE_STYLE}>Choose the level that best matches your current experience.</p>
         <RadioGroup
+          className="experience-radio-grid"
           data={EXPERIENCE_OPTIONS}
           value={experienceLevel}
           onChange={(e: RadioGroupChangeEvent) => setExperienceLevel(e.value as ExperienceLevel)}

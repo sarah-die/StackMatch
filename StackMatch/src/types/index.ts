@@ -1,4 +1,4 @@
-export type ExperienceLevel = "beginner" | "intermediate" | "senior" | "expert";
+export type ExperienceLevel = "Beginner" | "Intermediate" | "Senior" | "Expert";
 
 export interface UserProfile {
   id: string;
