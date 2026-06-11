@@ -23,7 +23,6 @@ interface OnboardingState {
   addTag: (field: TagField, value: string) => void;
   removeTag: (field: TagField, tag: string) => void;
   completeOnboarding: () => void;
-  resetProfile: () => void;
 }
 
 interface LegacyProfile {
@@ -105,7 +104,6 @@ export const useOnboardingStore = create<OnboardingState>()(
           [field]: state[field].filter((entry) => entry !== tag),
         })),
       completeOnboarding: () => set({ hasCompletedOnboarding: true, step: 0 }),
-      resetProfile: () => set({ ...INITIAL_STATE }),
     }),
     {
       name: "stackmatch-onboarding-store",

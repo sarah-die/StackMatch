@@ -10,20 +10,11 @@ export default function ProfilePage() {
   const experienceLevel = useOnboardingStore((state) => state.experienceLevel);
   const techStack = useOnboardingStore((state) => state.techStack);
   const currentlyLearning = useOnboardingStore((state) => state.currentlyLearning);
-  const resetProfile = useOnboardingStore((state) => state.resetProfile);
-
-  function handleReset() {
-    resetProfile();
-    navigate("/onboarding");
-  }
 
   return (
     <div style={{ padding: "24px 16px", display: "flex", flexDirection: "column", gap: "24px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <h2 style={{ margin: 0 }}>My Profile</h2>
-        <Button size="small" onClick={handleReset}>
-          Reset
-        </Button>
       </div>
 
       <Card>
