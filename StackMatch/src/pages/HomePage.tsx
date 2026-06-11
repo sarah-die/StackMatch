@@ -1,6 +1,7 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Card, CardBody, CardTitle } from "@progress/kendo-react-layout";
 import { useNavigate } from "react-router-dom";
+import linkedInQR from "../assets/linkedInQR.jpeg";
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -58,22 +59,16 @@ export const HomePage = () => {
           >
             <h2 style={{ margin: 0, color: "var(--kendo-color-black)" }}>My QR Code</h2>
 
-            <div
+            <img
+              src={linkedInQR}
+              alt="LinkedIn QR code"
               style={{
                 width: 240,
                 height: 240,
-                background: "var(--kendo-color-base-subtle)",
-                border: "2px dashed var(--kendo-color-border-alt)",
                 borderRadius: "8px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--kendo-color-subtle)",
-                fontSize: "14px",
+                objectFit: "cover",
               }}
-            >
-              QR Code
-            </div>
+            />
 
             <CardTitle>Your shareable code</CardTitle>
             <p
