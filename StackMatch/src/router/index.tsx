@@ -6,14 +6,11 @@ import MatchPage from "../pages/MatchPage";
 import MatchResultPage from "../pages/MatchResultPage";
 import OnboardingPage from "../pages/OnboardingPage";
 import ProfilePage from "../pages/ProfilePage";
+import { useOnboardingStore } from "../store/useOnboardingStore";
 
 function getInitialRoute(): string {
-  try {
-    const profile = localStorage.getItem("stackmatch_profile");
-    return profile ? "/home" : "/onboarding";
-  } catch {
-    return "/onboarding";
-  }
+  const profileCompleted = useOnboardingStore.getState().hasCompletedOnboarding;
+  return profileCompleted ? "/home" : "/onboarding";
 }
 
 const router = createBrowserRouter([

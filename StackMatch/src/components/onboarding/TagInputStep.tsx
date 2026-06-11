@@ -1,40 +1,30 @@
 import { Button, Chip } from "@progress/kendo-react-buttons";
 import { Input } from "@progress/kendo-react-inputs";
-import { useState } from "react";
+import { useOnboardingStore, type TagField } from "../../store/useOnboardingStore";
 
 interface TagInputStepProps {
   title: string;
   description: string;
-  tags: string[];
-  setTags: (tags: string[]) => void;
+  field: TagField;
   suggestions: string[];
 }
 
 export default function TagInputStep({
   title,
   description,
-  tags,
-  setTags,
+  field,
   suggestions,
 }: TagInputStepProps) {
-  const [inputValue, setInputValue] = useState("");
-
-  function addTag(value: string) {
-    const trimmed = value.trim();
-    if (trimmed && !tags.includes(trimmed)) {
-      setTags([...tags, trimmed]);
-    }
-    setInputValue("");
-  }
-
-  function removeTag(tag: string) {
-    setTags(tags.filter((t) => t !== tag));
-  }
+  const tags = useOnboardingStore((state) => state[field]);
+  const inputValue = useOnboardingStore((state) => state.tagDrafts[field]);
+  const setTagDraft = useOnboardingStore((state) => state.setTagDraft);
+  const addTag = useOnboardingStore((state) => state.addTag);
+  const removeTag = useOnboardingStore((state) => state.removeTag);
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
       e.preventDefault();
-      addTag(inputValue);
+      addTag(field, inputValue);
     }
   }
 
@@ -48,12 +38,12 @@ export default function TagInputStep({
       <div style={{ display: "flex", gap: "8px" }}>
         <Input
           value={inputValue}
-          onChange={(e) => setInputValue(String(e.value ?? ""))}
+          onChange={(e) => setTagDraft(field, String(e.value ?? ""))}
           onKeyDown={handleKeyDown}
           placeholder="Type and press Enter to add..."
           style={{ flex: 1 }}
         />
-        <Button onClick={() => addTag(inputValue)} disabled={!inputValue.trim()}>
+        <Button onClick={() => addTag(field, inputValue)} disabled={!inputValue.trim()}>
           Add
         </Button>
       </div>
@@ -61,7 +51,7 @@ export default function TagInputStep({
       {tags.length > 0 && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
           {tags.map((tag) => (
-            <Chip key={tag} text={tag} removable onRemove={() => removeTag(tag)} />
+            <Chip key={tag} text={tag} removable onRemove={() => removeTag(field, tag)} />
           ))}
         </div>
       )}
@@ -85,7 +75,7 @@ export default function TagInputStep({
               selected={tags.includes(s)}
               onClick={() => {
                 if (!tags.includes(s)) {
-                  setTags([...tags, s]);
+                  addTag(field, s);
                 }
               }}
             />

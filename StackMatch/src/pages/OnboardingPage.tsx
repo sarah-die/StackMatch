@@ -1,10 +1,9 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Stepper, type StepperChangeEvent } from "@progress/kendo-react-layout";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { ExperienceLevel } from "../types";
 import BasicInfoStep from "../components/onboarding/BasicInfoStep";
 import TagInputStep from "../components/onboarding/TagInputStep";
+import { useOnboardingStore } from "../store/useOnboardingStore";
 
 const STEPS = [{ label: "Basic Info" }, { label: "Tech Stack" }, { label: "Learning Goals" }];
 
@@ -35,22 +34,19 @@ const LEARNING_SUGGESTIONS = [
 ];
 
 export default function OnboardingPage() {
-  const [step, setStep] = useState(0);
+  const step = useOnboardingStore((state) => state.step);
+  const setStep = useOnboardingStore((state) => state.setStep);
+  const nextStep = useOnboardingStore((state) => state.nextStep);
+  const prevStep = useOnboardingStore((state) => state.prevStep);
+  const completeOnboarding = useOnboardingStore((state) => state.completeOnboarding);
   const navigate = useNavigate();
-
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("");
-  const [experienceLevel, setExperienceLevel] = useState<ExperienceLevel>("intermediate");
-  const [techStack, setTechStack] = useState<string[]>([]);
-  const [currentlyLearning, setCurrentlyLearning] = useState<string[]>([]);
 
   function handleStepChange(e: StepperChangeEvent) {
     setStep(e.value);
   }
 
   function handleFinish() {
-    const profile = { name, role, experienceLevel, techStack, currentlyLearning };
-    localStorage.setItem("stackmatch_profile", JSON.stringify(profile));
+    completeOnboarding();
     navigate("/home");
   }
 
@@ -78,22 +74,12 @@ export default function OnboardingPage() {
           marginTop: "32px",
         }}
       >
-        {step === 0 && (
-          <BasicInfoStep
-            name={name}
-            setName={setName}
-            role={role}
-            setRole={setRole}
-            experienceLevel={experienceLevel}
-            setExperienceLevel={setExperienceLevel}
-          />
-        )}
+        {step === 0 && <BasicInfoStep />}
         {step === 1 && (
           <TagInputStep
             title="Your Tech Stack"
             description="Select the technologies you work with daily."
-            tags={techStack}
-            setTags={setTechStack}
+            field="techStack"
             suggestions={TECH_STACK_SUGGESTIONS}
           />
         )}
@@ -101,23 +87,20 @@ export default function OnboardingPage() {
           <TagInputStep
             title="Learning Goals"
             description="What are you currently learning or exploring?"
-            tags={currentlyLearning}
-            setTags={setCurrentlyLearning}
+            field="currentlyLearning"
             suggestions={LEARNING_SUGGESTIONS}
           />
         )}
       </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "32px" }}>
-        <Button disabled={step === 0} onClick={() => setStep((s) => s - 1)}>
-          Back
-        </Button>
+      <div style={{ display: "flex", marginTop: "32px" }}>
+        {step > 0 && <Button onClick={prevStep}>Back</Button>}
         {step < STEPS.length - 1 ? (
-          <Button themeColor="primary" onClick={() => setStep((s) => s + 1)}>
+          <Button themeColor="primary" style={{ marginLeft: "auto" }} onClick={nextStep}>
             Next
           </Button>
         ) : (
-          <Button themeColor="primary" onClick={handleFinish}>
+          <Button themeColor="primary" style={{ marginLeft: "auto" }} onClick={handleFinish}>
             Get Started
           </Button>
         )}

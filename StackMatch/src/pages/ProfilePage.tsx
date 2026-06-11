@@ -1,21 +1,19 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Card, CardBody, CardSubtitle, CardTitle } from "@progress/kendo-react-layout";
 import { useNavigate } from "react-router-dom";
-
-const MOCK_PROFILE = {
-  name: "Sarah Dev",
-  role: "Frontend Engineer",
-  experienceLevel: "Senior",
-  techStack: ["React", "TypeScript", "Tailwind", "Node.js"],
-  currentlyLearning: ["Rust", "WebAssembly"],
-  bio: "Building fast UIs and exploring systems programming on weekends.",
-};
+import { useOnboardingStore } from "../store/useOnboardingStore";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const name = useOnboardingStore((state) => state.name);
+  const role = useOnboardingStore((state) => state.role);
+  const experienceLevel = useOnboardingStore((state) => state.experienceLevel);
+  const techStack = useOnboardingStore((state) => state.techStack);
+  const currentlyLearning = useOnboardingStore((state) => state.currentlyLearning);
+  const resetProfile = useOnboardingStore((state) => state.resetProfile);
 
   function handleReset() {
-    localStorage.removeItem("stackmatch_profile");
+    resetProfile();
     navigate("/onboarding");
   }
 
@@ -30,27 +28,17 @@ export default function ProfilePage() {
 
       <Card>
         <CardBody>
-          <CardTitle>{MOCK_PROFILE.name}</CardTitle>
+          <CardTitle>{name || "—"}</CardTitle>
           <CardSubtitle>
-            {MOCK_PROFILE.role} · {MOCK_PROFILE.experienceLevel}
+            {role || "—"} · {experienceLevel || "—"}
           </CardSubtitle>
-          <p
-            style={{
-              marginTop: "12px",
-              marginBottom: 0,
-              fontSize: "14px",
-              color: "var(--color-muted)",
-            }}
-          >
-            {MOCK_PROFILE.bio}
-          </p>
         </CardBody>
       </Card>
 
       <div>
         <h3 style={{ marginBottom: "12px" }}>Tech Stack</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-          {MOCK_PROFILE.techStack.map((tech) => (
+          {techStack.map((tech) => (
             <span
               key={tech}
               style={{
@@ -69,7 +57,7 @@ export default function ProfilePage() {
       <div>
         <h3 style={{ marginBottom: "12px" }}>Currently Learning</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-          {MOCK_PROFILE.currentlyLearning.map((item) => (
+          {currentlyLearning.map((item) => (
             <span
               key={item}
               style={{

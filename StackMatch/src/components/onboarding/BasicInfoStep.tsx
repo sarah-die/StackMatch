@@ -1,14 +1,6 @@
 import { Input, RadioGroup, type RadioGroupChangeEvent } from "@progress/kendo-react-inputs";
+import { useOnboardingStore } from "../../store/useOnboardingStore";
 import type { ExperienceLevel } from "../../types";
-
-interface BasicInfoStepProps {
-  name: string;
-  setName: (v: string) => void;
-  role: string;
-  setRole: (v: string) => void;
-  experienceLevel: ExperienceLevel;
-  setExperienceLevel: (v: ExperienceLevel) => void;
-}
 
 const EXPERIENCE_OPTIONS = [
   { label: "Beginner", value: "beginner" },
@@ -17,14 +9,14 @@ const EXPERIENCE_OPTIONS = [
   { label: "Expert", value: "expert" },
 ];
 
-export default function BasicInfoStep({
-  name,
-  setName,
-  role,
-  setRole,
-  experienceLevel,
-  setExperienceLevel,
-}: BasicInfoStepProps) {
+export default function BasicInfoStep() {
+  const name = useOnboardingStore((state) => state.name);
+  const setName = useOnboardingStore((state) => state.setName);
+  const role = useOnboardingStore((state) => state.role);
+  const setRole = useOnboardingStore((state) => state.setRole);
+  const experienceLevel = useOnboardingStore((state) => state.experienceLevel);
+  const setExperienceLevel = useOnboardingStore((state) => state.setExperienceLevel);
+
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "24px" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
