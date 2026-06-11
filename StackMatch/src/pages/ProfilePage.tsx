@@ -33,7 +33,7 @@ export default function ProfilePage() {
             <span
               key={tech}
               style={{
-                background: "#f0f0f0",
+                background: "var(--kendo-color-base-subtle)",
                 borderRadius: "6px",
                 padding: "4px 12px",
                 fontSize: "14px",
@@ -52,11 +52,11 @@ export default function ProfilePage() {
             <span
               key={item}
               style={{
-                background: "#e8f4fd",
+                background: "var(--kendo-color-primary-subtle)",
                 borderRadius: "6px",
                 padding: "4px 12px",
                 fontSize: "14px",
-                color: "#0078d4",
+                color: "var(--kendo-color-primary)",
               }}
             >
               {item}

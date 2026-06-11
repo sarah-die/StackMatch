@@ -21,13 +21,13 @@ export default function HomePage() {
             style={{
               width: 200,
               height: 200,
-              background: "#f0f0f0",
-              border: "2px dashed #ccc",
+              background: "var(--kendo-color-base-subtle)",
+              border: "2px dashed var(--kendo-color-border-alt)",
               borderRadius: "8px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#999",
+              color: "var(--kendo-color-subtle)",
               fontSize: "14px",
             }}
           >

@@ -21,14 +21,14 @@ export default function MatchPage() {
         style={{
           width: "100%",
           aspectRatio: "1 / 1",
-          background: "#111",
+          background: "var(--kendo-color-primary-emphasis)",
           borderRadius: "12px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           gap: "8px",
-          color: "#fff",
+          color: "var(--kendo-color-on-primary)",
           fontSize: "14px",
         }}
       >

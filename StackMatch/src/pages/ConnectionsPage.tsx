@@ -33,7 +33,7 @@ export default function ConnectionsPage() {
                   <span
                     key={tech}
                     style={{
-                      background: "#f0f0f0",
+                      background: "var(--kendo-color-base-subtle)",
                       borderRadius: "4px",
                       padding: "2px 8px",
                       fontSize: "12px",
@@ -48,7 +48,7 @@ export default function ConnectionsPage() {
               style={{
                 flexShrink: 0,
                 background: getMatchPercentageColor(connection.matchPercentage),
-                color: "#ffffff",
+                color: "var(--kendo-color-on-primary)",
                 width: "52px",
                 height: "52px",
                 display: "inline-flex",

@@ -6,12 +6,19 @@ import { MOCK_CONVERSATION_STARTERS } from "../constants/match-phrases";
 
 const MOCK_MATCH_PERCENTAGE = 78;
 
+function getMatchPercentageColor(percentage: number): string {
+  if (percentage < 35) return "var(--kendo-color-tertiary-emphasis)";
+  if (percentage < 65) return "var(--kendo-color-tertiary)";
+  return "var(--kendo-color-info)";
+}
+
 const pickRandomConversationStarters = (count: number) =>
   [...MOCK_CONVERSATION_STARTERS].sort(() => Math.random() - 0.5).slice(0, count);
 
 export const MatchResultPage = () => {
   const navigate = useNavigate();
   const [randomConversationStarters] = useState(() => pickRandomConversationStarters(5));
+  const matchPercentageColor = getMatchPercentageColor(MOCK_MATCH_PERCENTAGE);
 
   return (
     <div style={{ padding: "24px 16px", display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -32,6 +39,7 @@ export const MatchResultPage = () => {
             fontWeight: 700,
             lineHeight: 1,
             margin: "0 0 8px",
+            color: matchPercentageColor,
           }}
         >
           {MOCK_MATCH_PERCENTAGE}%
@@ -41,7 +49,7 @@ export const MatchResultPage = () => {
           style={{
             width: "100%",
             height: "12px",
-            background: "#e0e0e0",
+            background: "var(--kendo-color-base-subtle)",
             borderRadius: "8px",
             overflow: "hidden",
           }}
@@ -50,7 +58,7 @@ export const MatchResultPage = () => {
             style={{
               width: `${MOCK_MATCH_PERCENTAGE}%`,
               height: "100%",
-              background: "var(--color-primary, #aa3bff)",
+              background: matchPercentageColor,
               borderRadius: "8px",
               transition: "width 0.4s ease",
             }}
