@@ -2,20 +2,55 @@ import { Button } from "@progress/kendo-react-buttons";
 import { Stepper, type StepperChangeEvent } from "@progress/kendo-react-layout";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { ExperienceLevel } from "../types";
+import BasicInfoStep from "../components/onboarding/BasicInfoStep";
+import TagInputStep from "../components/onboarding/TagInputStep";
 
 const STEPS = [{ label: "Basic Info" }, { label: "Tech Stack" }, { label: "Learning Goals" }];
+
+const TECH_STACK_SUGGESTIONS = [
+  "React",
+  "TypeScript",
+  "Vue.js",
+  "Angular",
+  "Node.js",
+  "Next.js",
+  "Tailwind CSS",
+  "GraphQL",
+  "Docker",
+  "PostgreSQL",
+];
+
+const LEARNING_SUGGESTIONS = [
+  "Rust",
+  "WebAssembly",
+  "AI/ML",
+  "Svelte",
+  "Go",
+  "Kubernetes",
+  "Deno",
+  "Three.js",
+  "Web3",
+  "Bun",
+];
 
 export default function OnboardingPage() {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
+  const [experienceLevel, setExperienceLevel] = useState<ExperienceLevel>("intermediate");
+  const [techStack, setTechStack] = useState<string[]>([]);
+  const [currentlyLearning, setCurrentlyLearning] = useState<string[]>([]);
 
   function handleStepChange(e: StepperChangeEvent) {
     setStep(e.value);
   }
 
   function handleFinish() {
-    // Placeholder: in future, save profile to localStorage
-    localStorage.setItem("stackmatch_profile", "true");
+    const profile = { name, role, experienceLevel, techStack, currentlyLearning };
+    localStorage.setItem("stackmatch_profile", JSON.stringify(profile));
     navigate("/home");
   }
 
@@ -44,26 +79,32 @@ export default function OnboardingPage() {
         }}
       >
         {step === 0 && (
-          <div style={{ textAlign: "center" }}>
-            <h2>Basic Info</h2>
-            <p style={{ color: "var(--color-muted)" }}>Name, role, and experience level go here.</p>
-          </div>
+          <BasicInfoStep
+            name={name}
+            setName={setName}
+            role={role}
+            setRole={setRole}
+            experienceLevel={experienceLevel}
+            setExperienceLevel={setExperienceLevel}
+          />
         )}
         {step === 1 && (
-          <div style={{ textAlign: "center" }}>
-            <h2>Your Tech Stack</h2>
-            <p style={{ color: "var(--color-muted)" }}>
-              Select the technologies you work with daily.
-            </p>
-          </div>
+          <TagInputStep
+            title="Your Tech Stack"
+            description="Select the technologies you work with daily."
+            tags={techStack}
+            setTags={setTechStack}
+            suggestions={TECH_STACK_SUGGESTIONS}
+          />
         )}
         {step === 2 && (
-          <div style={{ textAlign: "center" }}>
-            <h2>Learning Goals</h2>
-            <p style={{ color: "var(--color-muted)" }}>
-              What are you currently learning or exploring?
-            </p>
-          </div>
+          <TagInputStep
+            title="Learning Goals"
+            description="What are you currently learning or exploring?"
+            tags={currentlyLearning}
+            setTags={setCurrentlyLearning}
+            suggestions={LEARNING_SUGGESTIONS}
+          />
         )}
       </div>
 
