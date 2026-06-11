@@ -1,29 +1,11 @@
-import { Badge, BadgeContainer } from "@progress/kendo-react-indicators";
 import { Card, CardBody, CardSubtitle, CardTitle } from "@progress/kendo-react-layout";
+import { MOCK_CONNECTIONS } from "../constants/connections";
 
-const MOCK_CONNECTIONS = [
-  {
-    id: "1",
-    name: "Alex Müller",
-    role: "Frontend Dev",
-    matchPercentage: 91,
-    sharedStack: ["React", "TypeScript"],
-  },
-  {
-    id: "2",
-    name: "Jamie Lee",
-    role: "Full-Stack Engineer",
-    matchPercentage: 74,
-    sharedStack: ["Node.js", "PostgreSQL"],
-  },
-  {
-    id: "3",
-    name: "Sofia Rossi",
-    role: "DevOps Engineer",
-    matchPercentage: 62,
-    sharedStack: ["Docker", "Kubernetes"],
-  },
-];
+function getMatchPercentageColor(percentage: number): string {
+  if (percentage < 35) return "var(--kendo-color-tertiary-emphasis)";
+  if (percentage < 65) return "var(--kendo-color-tertiary)";
+  return "var(--kendo-color-info)";
+}
 
 export default function ConnectionsPage() {
   return (
@@ -34,36 +16,55 @@ export default function ConnectionsPage() {
       </p>
 
       {MOCK_CONNECTIONS.map((connection) => (
-        <BadgeContainer key={connection.id} style={{ width: "100%" }}>
-          <Card style={{ width: "100%" }}>
-            <CardBody
-              style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
-            >
-              <div>
-                <CardTitle>{connection.name}</CardTitle>
-                <CardSubtitle>{connection.role}</CardSubtitle>
-                <div style={{ display: "flex", gap: "6px", marginTop: "8px", flexWrap: "wrap" }}>
-                  {connection.sharedStack.map((tech) => (
-                    <span
-                      key={tech}
-                      style={{
-                        background: "#f0f0f0",
-                        borderRadius: "4px",
-                        padding: "2px 8px",
-                        fontSize: "12px",
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+        <Card key={connection.id} style={{ width: "100%" }}>
+          <CardBody
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <div style={{ flex: 1, minWidth: 0, textAlign: "left" }}>
+              <CardTitle>{connection.name}</CardTitle>
+              <CardSubtitle>{connection.role}</CardSubtitle>
+              <div style={{ display: "flex", gap: "6px", marginTop: "8px", flexWrap: "wrap" }}>
+                {connection.sharedStack.map((tech) => (
+                  <span
+                    key={tech}
+                    style={{
+                      background: "#f0f0f0",
+                      borderRadius: "4px",
+                      padding: "2px 8px",
+                      fontSize: "12px",
+                    }}
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
-              <Badge themeColor="info" size="large">
-                {connection.matchPercentage}%
-              </Badge>
-            </CardBody>
-          </Card>
-        </BadgeContainer>
+            </div>
+            <span
+              style={{
+                flexShrink: 0,
+                background: getMatchPercentageColor(connection.matchPercentage),
+                color: "#ffffff",
+                width: "52px",
+                height: "52px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "50%",
+                fontSize: "13px",
+                fontWeight: 700,
+                lineHeight: 1,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {connection.matchPercentage}%
+            </span>
+          </CardBody>
+        </Card>
       ))}
     </div>
   );
