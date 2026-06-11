@@ -52,7 +52,7 @@ export const OnboardingPage = () => {
         {step === 0 && <BasicInfoStep />}
         {step === 1 && (
           <TagInputStep
-            title="Your Tech Stack"
+            title="Your TechStack"
             description="Select the technologies you work with daily."
             field="techStack"
             suggestions={TECH_STACK_SUGGESTIONS}
