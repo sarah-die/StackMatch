@@ -3,7 +3,7 @@ import AppLayout from "../components/layout/AppLayout";
 import ConnectionsPage from "../pages/ConnectionsPage";
 import HomePage from "../pages/HomePage";
 import MatchPage from "../pages/MatchPage";
-import MatchResultPage from "../pages/MatchResultPage";
+import { MatchResultPage } from "../pages/MatchResultPage";
 import OnboardingPage from "../pages/OnboardingPage";
 import ProfilePage from "../pages/ProfilePage";
 import { useOnboardingStore } from "../store/useOnboardingStore";

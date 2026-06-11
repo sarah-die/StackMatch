@@ -1,24 +1,18 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Card, CardBody, CardTitle } from "@progress/kendo-react-layout";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { MOCK_CONVERSATION_STARTERS } from "../constants/match-phrases";
 
 const MOCK_MATCH_PERCENTAGE = 78;
 
-const MOCK_CONVERSATION_STARTERS = [
-  {
-    topic: "React",
-    prompt: "You both use React — what patterns are you finding most useful lately?",
-  },
-  {
-    topic: "TypeScript",
-    prompt: "How are you handling complex generic types in your current project?",
-  },
-  { topic: "Learning", prompt: "They're learning Rust — what drew you to systems programming?" },
-];
+const pickRandomConversationStarters = (count: number) =>
+  [...MOCK_CONVERSATION_STARTERS].sort(() => Math.random() - 0.5).slice(0, count);
 
-export default function MatchResultPage() {
+export const MatchResultPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [randomConversationStarters] = useState(() => pickRandomConversationStarters(5));
 
   return (
     <div style={{ padding: "24px 16px", display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -50,12 +44,12 @@ export default function MatchResultPage() {
       </div>
 
       <h3 style={{ margin: 0 }}>Conversation Starters</h3>
-      {MOCK_CONVERSATION_STARTERS.map((starter) => (
-        <Card key={starter.topic}>
+      {randomConversationStarters.map((starter) => (
+        <Card key={starter.title}>
           <CardBody>
-            <CardTitle>{starter.topic}</CardTitle>
+            <CardTitle>{starter.title}</CardTitle>
             <p style={{ margin: 0, fontSize: "14px", color: "var(--color-muted)" }}>
-              {starter.prompt}
+              {starter.subtitle}
             </p>
           </CardBody>
         </Card>
@@ -74,4 +68,4 @@ export default function MatchResultPage() {
       </Button>
     </div>
   );
-}
+};

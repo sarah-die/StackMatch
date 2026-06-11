@@ -3,35 +3,10 @@ import { Stepper, type StepperChangeEvent } from "@progress/kendo-react-layout";
 import { useNavigate } from "react-router-dom";
 import BasicInfoStep from "../components/onboarding/BasicInfoStep";
 import TagInputStep from "../components/onboarding/TagInputStep";
+import { LEARNING_SUGGESTIONS, TECH_STACK_SUGGESTIONS } from "../constants/suggestions";
 import { useOnboardingStore } from "../store/useOnboardingStore";
 
 const STEPS = [{ label: "Basic Info" }, { label: "Tech Stack" }, { label: "Learning Goals" }];
-
-const TECH_STACK_SUGGESTIONS = [
-  "React",
-  "TypeScript",
-  "Vue.js",
-  "Angular",
-  "Node.js",
-  "Next.js",
-  "Tailwind CSS",
-  "GraphQL",
-  "Docker",
-  "PostgreSQL",
-];
-
-const LEARNING_SUGGESTIONS = [
-  "Rust",
-  "WebAssembly",
-  "AI/ML",
-  "Svelte",
-  "Go",
-  "Kubernetes",
-  "Deno",
-  "Three.js",
-  "Web3",
-  "Bun",
-];
 
 export default function OnboardingPage() {
   const step = useOnboardingStore((state) => state.step);
