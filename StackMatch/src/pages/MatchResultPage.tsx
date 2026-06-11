@@ -1,7 +1,7 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Card, CardBody, CardTitle } from "@progress/kendo-react-layout";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MOCK_CONVERSATION_STARTERS } from "../constants/match-phrases";
 
 const MOCK_MATCH_PERCENTAGE = 78;
@@ -10,17 +10,32 @@ const pickRandomConversationStarters = (count: number) =>
   [...MOCK_CONVERSATION_STARTERS].sort(() => Math.random() - 0.5).slice(0, count);
 
 export const MatchResultPage = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
   const [randomConversationStarters] = useState(() => pickRandomConversationStarters(5));
 
   return (
     <div style={{ padding: "24px 16px", display: "flex", flexDirection: "column", gap: "24px" }}>
       <div style={{ textAlign: "center" }}>
-        <p style={{ margin: "0 0 4px", color: "var(--color-muted)", fontSize: "14px" }}>
-          Match with <strong>{id}</strong>
+        <p
+          style={{
+            margin: "0 0 4px",
+            color: "var(--color-muted)",
+            fontSize: "14px",
+          }}
+        >
+          Match with <strong>Nemo Grippa</strong>
         </p>
-        <span style={{ fontSize: "4rem", fontWeight: 700 }}>{MOCK_MATCH_PERCENTAGE}%</span>
+        <span
+          style={{
+            display: "block",
+            fontSize: "4rem",
+            fontWeight: 700,
+            lineHeight: 1,
+            margin: "0 0 8px",
+          }}
+        >
+          {MOCK_MATCH_PERCENTAGE}%
+        </span>
         <p style={{ margin: "4px 0 16px", color: "var(--color-muted)" }}>compatibility</p>
         <div
           style={{
