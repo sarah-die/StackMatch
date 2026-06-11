@@ -1,4 +1,6 @@
 import { Card, CardBody, CardSubtitle, CardTitle } from "@progress/kendo-react-layout";
+import type { KeyboardEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import linkedInBug from "../assets/LI-In-Bug.png";
 import { MOCK_CONNECTIONS } from "../constants/connections";
 
@@ -9,6 +11,12 @@ const getMatchPercentageColor = (percentage: number): string => {
 };
 
 export const ConnectionsPage = () => {
+  const navigate = useNavigate();
+
+  const handleOpenMatchResult = (connectionId: string) => {
+    navigate(`/connection/${connectionId}`);
+  };
+
   return (
     <div style={{ padding: "24px 16px", display: "flex", flexDirection: "column", gap: "16px" }}>
       <h2 style={{ margin: 0 }}>Connections</h2>
@@ -17,7 +25,19 @@ export const ConnectionsPage = () => {
       </p>
 
       {MOCK_CONNECTIONS.map((connection) => (
-        <Card key={connection.id} style={{ width: "100%", position: "relative" }}>
+        <Card
+          key={connection.id}
+          style={{ width: "100%", position: "relative", cursor: "pointer" }}
+          onClick={() => handleOpenMatchResult(connection.id)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              handleOpenMatchResult(connection.id);
+            }
+          }}
+        >
           <CardBody
             style={{
               display: "flex",

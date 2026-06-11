@@ -1,13 +1,14 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Card, CardBody } from "@progress/kendo-react-layout";
 import { useNavigate } from "react-router-dom";
+import { MOCK_CONNECTIONS } from "../constants/connections";
 
 export const MatchPage = () => {
   const navigate = useNavigate();
 
   const handleSimulateScan = () => {
-    // Placeholder: navigate to a mock match result
-    navigate("/match/demo-user");
+    const randomConnection = MOCK_CONNECTIONS[Math.floor(Math.random() * MOCK_CONNECTIONS.length)];
+    navigate(`/match/${randomConnection.id}`);
   };
 
   return (

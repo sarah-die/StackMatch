@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { AppLayout } from "../components/layout/AppLayout";
+import { ConnectionMatchPage } from "../pages/ConnectionMatchPage";
 import { ConnectionsPage } from "../pages/ConnectionsPage";
 import { HomePage } from "../pages/HomePage";
 import { MatchPage } from "../pages/MatchPage";
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: "/home", element: <HomePage /> },
       { path: "/match", element: <MatchPage /> },
       { path: "/match/:id", element: <MatchResultPage /> },
+      { path: "/connection/:id", element: <ConnectionMatchPage /> },
       { path: "/connections", element: <ConnectionsPage /> },
       { path: "/profile", element: <ProfilePage /> },
     ],
