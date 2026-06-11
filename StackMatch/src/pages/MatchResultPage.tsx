@@ -61,7 +61,12 @@ export default function MatchResultPage() {
         </Card>
       ))}
 
-      <Button themeColor="primary" size="large" style={{ width: "100%" }}>
+      <Button
+        themeColor="primary"
+        size="large"
+        style={{ width: "100%" }}
+        onClick={() => navigate("/connections")}
+      >
         Save Connection
       </Button>
       <Button size="large" style={{ width: "100%" }} onClick={() => navigate("/match")}>
