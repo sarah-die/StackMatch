@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import BottomNav from "./BottomNav";
-import TopBar from "./TopBar";
+import { BottomNav } from "./BottomNav";
+import { TopBar } from "./TopBar";
 
-export default function AppLayout() {
+export const AppLayout = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", minHeight: "100dvh" }}>
       <TopBar />
@@ -12,4 +12,4 @@ export default function AppLayout() {
       <BottomNav />
     </div>
   );
-}
+};

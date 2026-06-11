@@ -1,7 +1,7 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Card, CardBody, CardTitle } from "@progress/kendo-react-layout";
 
-export default function HomePage() {
+export const HomePage = () => {
   return (
     <div style={{ padding: "24px 16px", display: "flex", flexDirection: "column", gap: "24px" }}>
       <h2 style={{ margin: 0 }}>My QR Code</h2>
@@ -52,4 +52,4 @@ export default function HomePage() {
       </Button>
     </div>
   );
-}
+};

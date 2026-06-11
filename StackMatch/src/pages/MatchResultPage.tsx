@@ -6,11 +6,11 @@ import { MOCK_CONVERSATION_STARTERS } from "../constants/match-phrases";
 
 const MOCK_MATCH_PERCENTAGE = 78;
 
-function getMatchPercentageColor(percentage: number): string {
+const getMatchPercentageColor = (percentage: number): string => {
   if (percentage < 35) return "var(--kendo-color-tertiary-emphasis)";
   if (percentage < 65) return "var(--kendo-color-tertiary)";
   return "var(--kendo-color-info)";
-}
+};
 
 const pickRandomConversationStarters = (count: number) =>
   [...MOCK_CONVERSATION_STARTERS].sort(() => Math.random() - 0.5).slice(0, count);

@@ -33,7 +33,7 @@ interface LegacyProfile {
   currentlyLearning?: string[];
 }
 
-function loadLegacyProfile(): LegacyProfile {
+const loadLegacyProfile = (): LegacyProfile => {
   if (typeof window === "undefined") {
     return {};
   }
@@ -44,7 +44,7 @@ function loadLegacyProfile(): LegacyProfile {
   } catch {
     return {};
   }
-}
+};
 
 const legacy = loadLegacyProfile();
 

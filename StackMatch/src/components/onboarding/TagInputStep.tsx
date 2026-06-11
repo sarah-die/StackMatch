@@ -9,24 +9,19 @@ interface TagInputStepProps {
   suggestions: string[];
 }
 
-export default function TagInputStep({
-  title,
-  description,
-  field,
-  suggestions,
-}: TagInputStepProps) {
+export const TagInputStep = ({ title, description, field, suggestions }: TagInputStepProps) => {
   const tags = useOnboardingStore((state) => state[field]);
   const inputValue = useOnboardingStore((state) => state.tagDrafts[field]);
   const setTagDraft = useOnboardingStore((state) => state.setTagDraft);
   const addTag = useOnboardingStore((state) => state.addTag);
   const removeTag = useOnboardingStore((state) => state.removeTag);
 
-  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
       addTag(field, inputValue);
     }
-  }
+  };
 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -84,4 +79,4 @@ export default function TagInputStep({
       </div>
     </div>
   );
-}
+};

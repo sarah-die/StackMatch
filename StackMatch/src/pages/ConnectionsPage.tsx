@@ -1,13 +1,13 @@
 import { Card, CardBody, CardSubtitle, CardTitle } from "@progress/kendo-react-layout";
 import { MOCK_CONNECTIONS } from "../constants/connections";
 
-function getMatchPercentageColor(percentage: number): string {
+const getMatchPercentageColor = (percentage: number): string => {
   if (percentage < 35) return "var(--kendo-color-tertiary-emphasis)";
   if (percentage < 65) return "var(--kendo-color-tertiary)";
   return "var(--kendo-color-info)";
-}
+};
 
-export default function ConnectionsPage() {
+export const ConnectionsPage = () => {
   return (
     <div style={{ padding: "24px 16px", display: "flex", flexDirection: "column", gap: "16px" }}>
       <h2 style={{ margin: 0 }}>Connections</h2>
@@ -68,4 +68,4 @@ export default function ConnectionsPage() {
       ))}
     </div>
   );
-}
+};

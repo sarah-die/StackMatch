@@ -1,14 +1,14 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Stepper, type StepperChangeEvent } from "@progress/kendo-react-layout";
 import { useNavigate } from "react-router-dom";
-import BasicInfoStep from "../components/onboarding/BasicInfoStep";
-import TagInputStep from "../components/onboarding/TagInputStep";
+import { BasicInfoStep } from "../components/onboarding/BasicInfoStep";
+import { TagInputStep } from "../components/onboarding/TagInputStep";
 import { LEARNING_SUGGESTIONS, TECH_STACK_SUGGESTIONS } from "../constants/suggestions";
 import { useOnboardingStore } from "../store/useOnboardingStore";
 
 const STEPS = [{ label: "Basic Info" }, { label: "Tech Stack" }, { label: "Learning Goals" }];
 
-export default function OnboardingPage() {
+export const OnboardingPage = () => {
   const step = useOnboardingStore((state) => state.step);
   const setStep = useOnboardingStore((state) => state.setStep);
   const nextStep = useOnboardingStore((state) => state.nextStep);
@@ -16,14 +16,14 @@ export default function OnboardingPage() {
   const completeOnboarding = useOnboardingStore((state) => state.completeOnboarding);
   const navigate = useNavigate();
 
-  function handleStepChange(e: StepperChangeEvent) {
+  const handleStepChange = (e: StepperChangeEvent) => {
     setStep(e.value);
-  }
+  };
 
-  function handleFinish() {
+  const handleFinish = () => {
     completeOnboarding();
     navigate("/home");
-  }
+  };
 
   return (
     <div
@@ -82,4 +82,4 @@ export default function OnboardingPage() {
       </div>
     </div>
   );
-}
+};

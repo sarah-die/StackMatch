@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { text: "Profile", icon: "myspace-box", route: "/profile" },
 ];
 
-export default function BottomNav() {
+export const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,4 +26,4 @@ export default function BottomNav() {
       style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 100 }}
     />
   );
-}
+};

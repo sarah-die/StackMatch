@@ -1,13 +1,13 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { useNavigate } from "react-router-dom";
 
-export default function MatchPage() {
+export const MatchPage = () => {
   const navigate = useNavigate();
 
-  function handleSimulateScan() {
+  const handleSimulateScan = () => {
     // Placeholder: navigate to a mock match result
     navigate("/match/demo-user");
-  }
+  };
 
   return (
     <div style={{ padding: "24px 16px", display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -21,14 +21,14 @@ export default function MatchPage() {
         style={{
           width: "100%",
           aspectRatio: "1 / 1",
-          background: "var(--kendo-color-primary-emphasis)",
+          background: "var(--kendo-color-base-subtle)",
           borderRadius: "12px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           gap: "8px",
-          color: "var(--kendo-color-on-primary)",
+          color: "var(--color-muted)",
           fontSize: "14px",
         }}
       >
@@ -46,4 +46,4 @@ export default function MatchPage() {
       </Button>
     </div>
   );
-}
+};

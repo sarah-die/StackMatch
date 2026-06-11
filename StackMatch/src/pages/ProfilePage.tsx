@@ -3,7 +3,7 @@ import { Card, CardBody, CardSubtitle, CardTitle } from "@progress/kendo-react-l
 import { useNavigate } from "react-router-dom";
 import { useOnboardingStore } from "../store/useOnboardingStore";
 
-export default function ProfilePage() {
+export const ProfilePage = () => {
   const navigate = useNavigate();
   const name = useOnboardingStore((state) => state.name);
   const role = useOnboardingStore((state) => state.role);
@@ -75,4 +75,4 @@ export default function ProfilePage() {
       </Button>
     </div>
   );
-}
+};

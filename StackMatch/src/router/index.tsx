@@ -1,19 +1,19 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import AppLayout from "../components/layout/AppLayout";
-import ConnectionsPage from "../pages/ConnectionsPage";
-import HomePage from "../pages/HomePage";
-import MatchPage from "../pages/MatchPage";
+import { AppLayout } from "../components/layout/AppLayout";
+import { ConnectionsPage } from "../pages/ConnectionsPage";
+import { HomePage } from "../pages/HomePage";
+import { MatchPage } from "../pages/MatchPage";
 import { MatchResultPage } from "../pages/MatchResultPage";
-import OnboardingPage from "../pages/OnboardingPage";
-import ProfilePage from "../pages/ProfilePage";
+import { OnboardingPage } from "../pages/OnboardingPage";
+import { ProfilePage } from "../pages/ProfilePage";
 import { useOnboardingStore } from "../store/useOnboardingStore";
 
-function getInitialRoute(): string {
+const getInitialRoute = (): string => {
   const profileCompleted = useOnboardingStore.getState().hasCompletedOnboarding;
   return profileCompleted ? "/home" : "/onboarding";
-}
+};
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <Navigate to={getInitialRoute()} replace />,
@@ -33,5 +33,3 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-export default router;

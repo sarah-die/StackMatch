@@ -16,7 +16,7 @@ const SUBTITLE_STYLE = {
   marginBottom: "15px",
 };
 
-export default function BasicInfoStep() {
+export const BasicInfoStep = () => {
   const name = useOnboardingStore((state) => state.name);
   const setName = useOnboardingStore((state) => state.setName);
   const role = useOnboardingStore((state) => state.role);
@@ -59,4 +59,4 @@ export default function BasicInfoStep() {
       </div>
     </div>
   );
-}
+};

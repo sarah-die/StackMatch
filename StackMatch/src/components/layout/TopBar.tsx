@@ -1,6 +1,6 @@
 import { AppBar, AppBarSection, AppBarSpacer } from "@progress/kendo-react-layout";
 
-export default function TopBar() {
+export const TopBar = () => {
   return (
     <AppBar style={{ background: "var(--color-primary)", color: "#fff" }}>
       <AppBarSection>
@@ -11,4 +11,4 @@ export default function TopBar() {
       <AppBarSpacer />
     </AppBar>
   );
-}
+};
