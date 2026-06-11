@@ -86,7 +86,12 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <Button themeColor="primary" size="large" style={{ width: "100%" }}>
+      <Button
+        themeColor="primary"
+        size="large"
+        style={{ width: "100%" }}
+        onClick={() => navigate("/onboarding")}
+      >
         Edit Profile
       </Button>
     </div>
