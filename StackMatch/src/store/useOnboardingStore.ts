@@ -9,6 +9,7 @@ interface OnboardingState {
   hasCompletedOnboarding: boolean;
   name: string;
   role: string;
+  linkedInUrl: string;
   experienceLevel: ExperienceLevel;
   techStack: string[];
   currentlyLearning: string[];
@@ -18,6 +19,7 @@ interface OnboardingState {
   prevStep: () => void;
   setName: (name: string) => void;
   setRole: (role: string) => void;
+  setLinkedInUrl: (linkedInUrl: string) => void;
   setExperienceLevel: (level: ExperienceLevel) => void;
   setTagDraft: (field: TagField, value: string) => void;
   addTag: (field: TagField, value: string) => void;
@@ -28,6 +30,7 @@ interface OnboardingState {
 interface LegacyProfile {
   name?: string;
   role?: string;
+  linkedInUrl?: string;
   experienceLevel?: ExperienceLevel;
   techStack?: string[];
   currentlyLearning?: string[];
@@ -53,10 +56,12 @@ const INITIAL_STATE = {
   hasCompletedOnboarding:
     Boolean(legacy.name) ||
     Boolean(legacy.role) ||
+    Boolean(legacy.linkedInUrl) ||
     Boolean(legacy.techStack?.length) ||
     Boolean(legacy.currentlyLearning?.length),
   name: legacy.name ?? "",
   role: legacy.role ?? "",
+  linkedInUrl: legacy.linkedInUrl ?? "",
   experienceLevel: legacy.experienceLevel ?? ("intermediate" as ExperienceLevel),
   techStack: legacy.techStack ?? [],
   currentlyLearning: legacy.currentlyLearning ?? [],
@@ -75,6 +80,7 @@ export const useOnboardingStore = create<OnboardingState>()(
       prevStep: () => set((state) => ({ step: Math.max(state.step - 1, 0) })),
       setName: (name) => set({ name }),
       setRole: (role) => set({ role }),
+      setLinkedInUrl: (linkedInUrl) => set({ linkedInUrl }),
       setExperienceLevel: (experienceLevel) => set({ experienceLevel }),
       setTagDraft: (field, value) =>
         set((state) => ({

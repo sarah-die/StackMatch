@@ -1,12 +1,14 @@
 import { Button } from "@progress/kendo-react-buttons";
 import { Card, CardBody, CardSubtitle, CardTitle } from "@progress/kendo-react-layout";
 import { useNavigate } from "react-router-dom";
+import linkedInBug from "../assets/LI-In-Bug.png";
 import { useOnboardingStore } from "../store/useOnboardingStore";
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
   const name = useOnboardingStore((state) => state.name);
   const role = useOnboardingStore((state) => state.role);
+  const linkedInUrl = useOnboardingStore((state) => state.linkedInUrl);
   const experienceLevel = useOnboardingStore((state) => state.experienceLevel);
   const techStack = useOnboardingStore((state) => state.techStack);
   const currentlyLearning = useOnboardingStore((state) => state.currentlyLearning);
@@ -23,6 +25,50 @@ export const ProfilePage = () => {
           <CardSubtitle>
             {role || "—"} · {experienceLevel || "—"}
           </CardSubtitle>
+          <div
+            style={{
+              marginTop: "10px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              minWidth: 0,
+            }}
+          >
+            <span
+              style={{
+                width: "18px",
+                height: "18px",
+                borderRadius: "50%",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}
+              aria-label="LinkedIn"
+            >
+              <img
+                src={linkedInBug}
+                alt="LinkedIn"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                }}
+              />
+            </span>
+            <span
+              style={{
+                fontSize: "14px",
+                color: "var(--color-muted)",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {linkedInUrl || "—"}
+            </span>
+          </div>
         </CardBody>
       </Card>
 

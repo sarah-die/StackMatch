@@ -21,6 +21,8 @@ export const BasicInfoStep = () => {
   const setName = useOnboardingStore((state) => state.setName);
   const role = useOnboardingStore((state) => state.role);
   const setRole = useOnboardingStore((state) => state.setRole);
+  const linkedInUrl = useOnboardingStore((state) => state.linkedInUrl);
+  const setLinkedInUrl = useOnboardingStore((state) => state.setLinkedInUrl);
   const experienceLevel = useOnboardingStore((state) => state.experienceLevel);
   const setExperienceLevel = useOnboardingStore((state) => state.setExperienceLevel);
 
@@ -55,6 +57,17 @@ export const BasicInfoStep = () => {
           data={EXPERIENCE_OPTIONS}
           value={experienceLevel}
           onChange={(e: RadioGroupChangeEvent) => setExperienceLevel(e.value as ExperienceLevel)}
+        />
+      </div>
+
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <h2 style={LABEL_STYLE}>LinkedIn URL</h2>
+        <p style={SUBTITLE_STYLE}>Add your profile link so matches can connect with you.</p>
+        <Input
+          value={linkedInUrl}
+          onChange={(e) => setLinkedInUrl(String(e.value ?? ""))}
+          placeholder="www.linkedin.com/in/your-profile"
+          style={{ width: "100%" }}
         />
       </div>
     </div>
