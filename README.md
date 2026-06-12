@@ -1,5 +1,11 @@
 # StackMatch
 
+This project is supposed to be used on mobile. So either use your mobile device or open dev tools and switch to the mobile view.
+
+The deployed version can be found here:
+
+- `https://sarah-die.github.io/StackMatch/`
+
 StackMatch is a conference networking app that helps attendees create meaningful connections faster.
 Users enter their tech stack, current learning topics, and experience level. After scanning each other's QR codes, they instantly receive a match score and personalized conversation starters.
 
