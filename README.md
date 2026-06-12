@@ -1,10 +1,19 @@
 # StackMatch
 
-This project is supposed to be used on mobile. So either use your mobile device or open dev tools and switch to the mobile view.
+StackMatch is a mobile-first Progressive Web App (PWA) and is intended to be installed and used on a phone.
+
+For the best experience, open the app on mobile and install it from your browser:
+
+- iOS (Safari): Share -> Add to Home Screen
+- Android (Chrome): Install app / Add to Home screen
+
+If you are testing on desktop, use your browser dev tools and switch to mobile device view.
 
 The deployed version can be found here:
 
 - `https://sarah-die.github.io/StackMatch/`
+
+## What it´s about
 
 StackMatch is a conference networking app that helps attendees create meaningful connections faster.
 Users enter their tech stack, current learning topics, and experience level. After scanning each other's QR codes, they instantly receive a match score and personalized conversation starters.
