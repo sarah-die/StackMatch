@@ -14,24 +14,29 @@ const getInitialRoute = (): string => {
   return profileCompleted ? "/home" : "/onboarding";
 };
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Navigate to={getInitialRoute()} replace />,
+    },
+    {
+      path: "/onboarding",
+      element: <OnboardingPage />,
+    },
+    {
+      element: <AppLayout />,
+      children: [
+        { path: "/home", element: <HomePage /> },
+        { path: "/match", element: <MatchPage /> },
+        { path: "/match/:id", element: <MatchResultPage /> },
+        { path: "/connection/:id", element: <ConnectionMatchPage /> },
+        { path: "/connections", element: <ConnectionsPage /> },
+        { path: "/profile", element: <ProfilePage /> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Navigate to={getInitialRoute()} replace />,
+    basename: import.meta.env.BASE_URL,
   },
-  {
-    path: "/onboarding",
-    element: <OnboardingPage />,
-  },
-  {
-    element: <AppLayout />,
-    children: [
-      { path: "/home", element: <HomePage /> },
-      { path: "/match", element: <MatchPage /> },
-      { path: "/match/:id", element: <MatchResultPage /> },
-      { path: "/connection/:id", element: <ConnectionMatchPage /> },
-      { path: "/connections", element: <ConnectionsPage /> },
-      { path: "/profile", element: <ProfilePage /> },
-    ],
-  },
-]);
+);
