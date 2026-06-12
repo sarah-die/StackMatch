@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 20 512 540" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top layer -->
+  <polygon
+    points="256,60 460,180 256,300 52,180"
+    fill="#5870d1"
+    rx="40"
+  />
+
+  <!-- Middle layer -->
+  <polygon
+    points="256,180 460,300 256,420 52,300"
+    fill="#4c57bc"
+  />
+
+  <!-- Bottom layer -->
+  <polygon
+    points="256,300 460,420 256,540 52,420"
+    fill="#2e3ca0"
+  />
+</svg>

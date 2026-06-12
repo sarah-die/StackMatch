@@ -1,0 +1,21 @@
+{
+  "name": "StackMatch",
+  "short_name": "StackMatch",
+  "description": "Conference networking app for faster, more meaningful connections.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#5870d1",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}
