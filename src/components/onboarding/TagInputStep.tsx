@@ -24,6 +24,11 @@ export const TagInputStep = ({ title, description, field, suggestions }: TagInpu
   const addTag = useOnboardingStore((state) => state.addTag);
   const removeTag = useOnboardingStore((state) => state.removeTag);
 
+  const normalizedSelectedTags = new Set(tags.map((tag) => tag.trim().toLowerCase()));
+  const visibleSuggestions = suggestions.filter(
+    (suggestion) => !normalizedSelectedTags.has(suggestion.trim().toLowerCase()),
+  );
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -85,17 +90,8 @@ export const TagInputStep = ({ title, description, field, suggestions }: TagInpu
           Pick a few to speed up onboarding.
         </p>
         <div className="tag-input-step__suggestion-frame">
-          {suggestions.map((s) => (
-            <Chip
-              key={s}
-              text={s}
-              selected={tags.includes(s)}
-              onClick={() => {
-                if (!tags.includes(s)) {
-                  addTag(field, s);
-                }
-              }}
-            />
+          {visibleSuggestions.map((s) => (
+            <Chip key={s} text={s} onClick={() => addTag(field, s)} />
           ))}
         </div>
       </div>
