@@ -1,73 +1,34 @@
-# React + TypeScript + Vite
+# StackMatch
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+StackMatch is a conference networking app that helps attendees create meaningful connections faster.
+Users enter their tech stack, current learning topics, and experience level. After scanning each other's QR codes, they instantly receive a match score and personalized conversation starters.
 
-Currently, two official plugins are available:
+## Why it exists
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Networking at events can be random and uncertain. StackMatch improves event experience by helping people discover relevant participants and start better conversations right away.
 
-## React Compiler
+## How it works
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Attendee completes a short profile (stack, learning goals, seniority).
+2. Two attendees scan each other's QR code.
+3. StackMatch calculates compatibility and shows tailored icebreakers.
 
-## Expanding the ESLint configuration
+## Product focus
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Mobile-first experience for conference usage.
+- Intended for phone use as a Progressive Web App (PWA).
+- Built with KendoReact components for a consistent, professional UI.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React + TypeScript + Vite
+- KendoReact UI components and theme
+- React Router
+- Zustand
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Run locally
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+pnpm dev
 ```
